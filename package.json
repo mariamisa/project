@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tape */*.test.js",
-    "start": "node index.js"
+    "test": "NODE_ENV=test tape server/*/*.test.js",
+    "start": "NODE_ENV=production node server/index.js",
+    "dev": "NODE_ENV=development node server/index.js"
   },
   "keywords": [],
   "author": "",
