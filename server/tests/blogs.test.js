@@ -11,9 +11,6 @@ tape('testing createUser query', async (t) => {
 	const user = {
         name: 'mariam',
         email:'mariam@gmail.com',
-        password: '123456',
-        city: 'gaza',
-        tsp:`${Date.now()}`
     };
 
 	await deleteAll();
@@ -25,11 +22,11 @@ tape('testing createUser query', async (t) => {
         })
         console.log(111,newBlog);
 
-    // try{
-    //     const findAllB = await findAllBlogs();
-    //     console.log(111,findAllB);
-    // }catch(e){
-    //     console.log(e);
-    // }
-    findAllBlogs().then(console.log)
+    try{
+        const findAllB = await findAllBlogs();
+        console.log(111,findAllB);
+    }catch(e){
+        console.log(e);
+    }
+    // findAllBlogs().then(console.log).catch(console.log)
 });
