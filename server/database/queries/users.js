@@ -2,8 +2,8 @@ const Users = require('../models/users');
 
 const userQueries = {};
 
-userQueries.createUser = ({ name, email, password, city,tsp }) => {
-	return Users.create({ name, email, password, city,tsp });
+userQueries.createUser = ({ name, email, password, city }) => {
+	return Users.create({ name, email, password, city });
 };
 
 userQueries.findAll = () => {

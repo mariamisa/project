@@ -1,3 +1,4 @@
 const {registerValidation}=require('./validation')
+const {checkEmail } =require('./checkUser')
 
-module.exports={registerValidation}
+module.exports={registerValidation,checkEmail}

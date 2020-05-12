@@ -8,7 +8,6 @@ tape('testing createUser query', (t) => {
         email:'mariam@gmail.com',
         password: '123456',
         city: 'gaza',
-        tsp:`${Date.now()}`
     };
     
     deleteAll().then(() => {
