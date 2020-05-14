@@ -1,8 +1,6 @@
 const { object, string } = require('yup');
 
 const registerValidation=(req,res,next)=>{
-    console.log('validation');
-    console.log(req.body);
     const schema = object().shape({
         name:string().required().min(4),
         email: string().email().required(),

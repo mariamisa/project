@@ -1,3 +1,3 @@
-const {register}=require('./user');
+const {register,getAllUsers}=require('./user/index');
 
-module.exports={register}
+module.exports={register,getAllUsers}

@@ -1,6 +1,4 @@
-const register=(req,res)=>{
-    res.json({msg:'hello from user constroller'});
-    console.log("hi from next");
-}
+const {register}=require('./auth')
+const getAllUsers = require('./getAllUser')
 
-module.exports={register}
+module.exports={register,getAllUsers}
