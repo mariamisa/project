@@ -11,4 +11,5 @@ const checkEmail=async(req,res,next)=>{
             }
 }
 
+
 module.exports={checkEmail}
