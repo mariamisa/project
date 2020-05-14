@@ -2,8 +2,8 @@ const blogs = require('../models/blogs');
 
 const aBlogsQueries = {};
 
-aBlogsQueries.createBlogs = ({ content, author }) => {
-	return blogs.create({ content, author });
+aBlogsQueries.createBlogs = ({ title, author,description }) => {
+	return blogs.create({ title, author,description });
 };
 
 aBlogsQueries.findAllBlogs = () => {

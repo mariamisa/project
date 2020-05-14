@@ -1,7 +1,6 @@
 const tape = require('tape');
 const connection = require('../database/connection');
 const { createUser,deleteAll,findOne } = require('../database/queries/users');
-// mongoose.createConnection(connection)
 tape('testing createUser query', (t) => {
 	const user = {
         name: 'mariam',
@@ -13,15 +12,13 @@ tape('testing createUser query', (t) => {
     deleteAll().then(() => {
 		createUser(user)
 			.then(() => {
-				createUser(user).then(console.log).catch(console.log);
+				createUser(user).then(res=>console.log('user created',res)).catch(console.log);
 			})
 			.catch((err) => console.log(err));
     });
+    
     findOne('mariam@gmail.com')
-    .then((res)=>console.log('success',res))
+    .then((res)=>console.log('email result found'))
     .catch((err) => console.log(err));
     
-	createUser(user)
-		.then((res) => console.log('success', res))
-		.catch((err) => console.log(err));
 });

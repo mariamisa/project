@@ -1,14 +1,13 @@
-const {findOne} = require('../../database/queries/users')
+const User = require('../../database/models/users')
 
-const checkEmail=(req,res,next)=>{
+const checkEmail=async(req,res,next)=>{
     const {body:{email}} = req
-        const result=findOne(email)
-            console.log(result);
+        const result=await User.findOne({email})
             if(!result){
                 next()
             }
             else{
-                res.status(400).json({ msg:'email exists!!' });
+                res.status(400).json({ msg:'email already exists!!' });
             }
 }
 
