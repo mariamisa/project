@@ -1,5 +1,6 @@
 const tape = require('tape');
 const connection = require('../database/connection');
+
 const {
 	createBlogs,
 	findAllBlogs,
@@ -11,20 +12,22 @@ tape('testing createUser query', async (t) => {
 	const user = {
         name: 'mariam',
         email:'mariam@gmail.com',
+        password:"569875555",
     };
 
 	await deleteAll();
-	await deleteAllPosts();
+	await deleteAllBlogs();
     const newUser = await createUser(user);
         const newBlog = await createBlogs({
-            content: 'new blog',
+            title:'hi from title',
+            description: 'new blog',
             author: newUser._id,
         })
-        console.log(111,newBlog);
+        console.log('create new blogs',newBlog);
 
     try{
         const findAllB = await findAllBlogs();
-        console.log(111,findAllB);
+        console.log('findAllBlogs',findAllB);
     }catch(e){
         console.log(e);
     }

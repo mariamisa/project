@@ -1,10 +1,21 @@
 const { Schema, model } = require('mongoose');
 
 const blogSchema = new Schema({
-	title:String,
-	img:String,
-	content: String,
-	tsp:'string',
+	title:{
+		type:String,
+		required:true
+	},
+	img:{
+		type:String,
+	},
+	description:{
+		type:String,
+		required:true
+	},
+	date:{
+		type:Date,
+		default:Date.now
+	},
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'Users',
