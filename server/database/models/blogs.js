@@ -22,6 +22,9 @@ const blogSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Users',
 	},
+	authorName:{
+		type:String,
+	}
 });
 
 const Blogs = model('blogs', blogSchema);

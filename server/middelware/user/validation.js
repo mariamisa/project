@@ -30,7 +30,7 @@ const addBlogValidation=(req,res,next)=>{
     const schema = object().shape({
         title: string().required(),
         description: string().min(8).required(),
-        img:string().required(),
+        img:string().reqired(),
         author:string()
     });
     schema.validate(req.body, { abortEarly: false })

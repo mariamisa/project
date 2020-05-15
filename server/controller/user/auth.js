@@ -32,7 +32,7 @@ const login= async(req,res)=>{
         if(!match) return res.json({msg:'un correct passwords'})
 
         //create token for user
-        const token= jwt.sign({_id:result._id },process.env.SECRET_KEY);
+        const token= jwt.sign({_id:result._id,name:result.name },process.env.SECRET_KEY);
         res.cookie('token',token)
         res.json({msg:'login'})
     }
