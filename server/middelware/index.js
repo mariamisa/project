@@ -1,3 +1,3 @@
-const {registerValidation,checkEmail,loginValidation} = require('./user')
+const {registerValidation,checkEmail,loginValidation,addBlogValidation} = require('./user')
 
-module.exports={registerValidation,checkEmail,loginValidation}
+module.exports={registerValidation,checkEmail,loginValidation,addBlogValidation}

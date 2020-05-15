@@ -20,6 +20,7 @@ tape('testing createUser query', async (t) => {
     const newUser = await createUser(user);
         const newBlog = await createBlogs({
             title:'hi from title',
+            img:'kmxksmxksmxksmxksmxkls',
             description: 'new blog',
             author: newUser._id,
         })

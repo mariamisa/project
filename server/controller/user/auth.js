@@ -33,7 +33,7 @@ const login= async(req,res)=>{
 
         //create token for user
         const token= jwt.sign({_id:result._id },process.env.SECRET_KEY);
-        res.cookie('token',token);
+        res.cookie('token',token)
         res.json({msg:'login'})
     }
     catch(e){
@@ -42,7 +42,8 @@ const login= async(req,res)=>{
 }
 
 const logout=(req,res)=>{
-    res.clearCookie('token').json({msg:'logout'})
+    res.clearCookie('token').json({ message: 'logged out successfully' });
+
 }
 
 
