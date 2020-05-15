@@ -23,4 +23,5 @@ const deleteAllUsers=async(req,res)=>{
     }
 }
 
+
 module.exports={getAllUsers,deleteAllUsers}
