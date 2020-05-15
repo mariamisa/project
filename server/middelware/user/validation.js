@@ -24,8 +24,22 @@ const loginValidation=(req,res,next)=>{
         .catch((err) => {
             res.status(400).json({ msg: err.errors[0] });
         });
-
 }
-module.exports={registerValidation,loginValidation}
+
+const addBlogValidation=(req,res,next)=>{
+    const schema = object().shape({
+        title: string().required(),
+        description: string().min(8).required(),
+        img:string().required(),
+        author:string()
+    });
+    schema.validate(req.body, { abortEarly: false })
+        .then(() => { next() })
+        .catch((err) => {
+            res.status(400).json({ msg: err.errors[0] });
+        });
+}
+
+module.exports={registerValidation,loginValidation,addBlogValidation}
 
 
