@@ -13,6 +13,7 @@ const googleAuth=async (req, res) => {
 		});
 		const payload = ticket.getPayload();
 		const userid = payload['sub'];
+		//set cookies
 	};
 	verify().catch(console.error);
 
