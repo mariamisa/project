@@ -2,29 +2,29 @@ const jwt=require('jsonwebtoken')
 
 const Blog=require('../../database/models/blogs')
 
-const getAllBlogs=async(req,res)=>{
+const getAllBlogs=async(req,res,next)=>{
     try{
         const blogs=await Blog.find();
         if(!blogs) return res.status(200).json({data:'no data'})
         res.status(200).json({data:blogs})
     }
     catch(e){
-        console.log(e);
+        next(e);
     }
 }
-const addNewBlog=async(req,res)=>{
+const addNewBlog=async(req,res,next)=>{
     const {body:{title,description,img}}=req;
     const {_id,name}= jwt.decode(req.cookies.token,process.env.SECRET_KEY)
     console.log(_id,name);
     const author=_id;
     const authorName=name
     try{
-        const newBlog=await Blog.create({title,description,img,author,authorName})
+        const newBlog=await Blog.create({title,img,description,author,authorName})
         if(!newBlog) return res.json({msg:'error'})
         res.json({data:`${newBlog} add succesfuly`})
     }
     catch(e){
-        console.log(e);
+        next(e);
     }
 }
 

@@ -4,7 +4,7 @@ const registerValidation=(req,res,next)=>{
     const schema = object().shape({
         name:string().required().min(4),
         email: string().email().required(),
-        password: string().min(8).required(),
+        // password: string().min(8).required(),
         city:string()
     });
     schema.validate(req.body, { abortEarly: false })
