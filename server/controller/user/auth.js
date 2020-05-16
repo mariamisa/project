@@ -2,7 +2,7 @@ const User = require('../../database/models/users')
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken')
 
-const register= async (req,res)=>{
+const register= async (req,res,next)=>{
     const {body:{name,email,password,city}}=req
     bcrypt.hash(password, 10,async(err, hashPassword)=> {
         if(err) return res.status(500).json({msg:'server error'})
@@ -15,7 +15,7 @@ const register= async (req,res)=>{
             })
             res.json({msg:`user for id ${_id} created sucessfully`})
         }catch(e){
-            console.log(e);
+            next(e);
         }
     });
 }
@@ -37,7 +37,7 @@ const login= async(req,res)=>{
         res.json({msg:'login'})
     }
     catch(e){
-        console.log(e);
+        next(e);
     }
 }
 
