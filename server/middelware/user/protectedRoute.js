@@ -8,9 +8,8 @@ const protectedRoute = (req, res, next) => {
             err.status = 401;
             next(err);
         } else {
-            console.log(1111);
             req.user = token;
-            next();
+            next()
         }
         });
 };
