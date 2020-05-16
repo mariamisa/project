@@ -14,7 +14,8 @@ const {
     registerValidation,
     checkEmail,
     loginValidation,
-    addBlogValidation
+    addBlogValidation,
+    protected
     } =require('../middelware')
 
 //user routes
@@ -27,7 +28,7 @@ Router.post('/login/google', googleAuth);
 
 //blogs routes (protected add blog)
 Router.get('/blogs',getAllBlogs)
-Router.post('/blogs',addBlogValidation,addNewBlog)
+Router.post('/blogs',protected,addBlogValidation,addNewBlog)
 Router.delete('/blogs',deleteAllBlogs)
 
 

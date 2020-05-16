@@ -16,7 +16,7 @@ const register= async (req,res)=>{
             })
             res.json({msg:`user for id ${data._id} created sucessfully`,data})
         }catch(e){
-            console.log(e);
+            next(e);
         }
     });
 }
@@ -38,7 +38,7 @@ const login= async(req,res)=>{
         res.json({msg:'login'})
     }
     catch(e){
-        console.log(e);
+        next(e);
     }
 }
 
