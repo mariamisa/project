@@ -12,7 +12,7 @@ const getAllBlogs=async(req,res,next)=>{
         next(e);
     }
 }
-const addNewBlog=async(req,res,next)=>{
+const addNewBlog=async(req,res)=>{
     const {body:{title,description,img}}=req;
     const {_id,name}= jwt.decode(req.cookies.token,process.env.SECRET_KEY)
     console.log(_id,name);
@@ -24,7 +24,7 @@ const addNewBlog=async(req,res,next)=>{
         res.json({data:`${newBlog} add succesfuly`})
     }
     catch(e){
-        next(e);
+        console.log(e);
     }
 }
 
