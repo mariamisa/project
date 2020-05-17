@@ -28,7 +28,7 @@ Router.post('/login/google', googleAuth);
 
 //blogs routes (protected add blog)
 Router.get('/blogs',getAllBlogs)
-Router.post('/blogs',protected,addNewBlog)
+Router.post('/blogs',protected,validationBlog,addNewBlog)
 Router.delete('/blogs',deleteAllBlogs)
 
 
