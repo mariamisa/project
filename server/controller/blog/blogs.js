@@ -12,7 +12,7 @@ const getAllBlogs=async(req,res,next)=>{
         next(e);
     }
 }
-const addNewBlog=async(req,res)=>{
+const addNewBlog=async(req,res,next)=>{
     const {body:{title,description,img}}=req;
     const {_id,name}= jwt.decode(req.cookies.token,process.env.SECRET_KEY)
     console.log(_id,name);
@@ -20,11 +20,15 @@ const addNewBlog=async(req,res)=>{
     const authorName=name
     try{
         const newBlog=await Blog.create({title,img,description,author,authorName})
-        if(!newBlog) return res.json({msg:'error'})
+        if(!newBlog){
+            const err = new Error();
+            err.msg = 'faild to add blog';
+            throw err;
+        }
         res.json({data:`${newBlog} add succesfuly`})
     }
-    catch(e){
-        console.log(e);
+    catch(err){
+        next(err);
     }
 }
 
