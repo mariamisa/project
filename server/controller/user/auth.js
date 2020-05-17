@@ -2,10 +2,12 @@ const User = require('../../database/models/users')
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken')
 
-const register= async (req,res)=>{
+const register= async (req,res,next)=>{
     const {body:{name,email,password,userId,city}}=req
     bcrypt.hash(password, 10,async(err, hashPassword)=> {
-        if(err) return res.status(500).json({msg:'server error'})
+        if(err){
+            throw(err)
+        }
         try{
             const data= await User.create({
                 name,
@@ -27,18 +29,21 @@ const login= async(req,res)=>{
     try{
         const result= await User.findOne({email})
         if(!result)return res.json({msg:'user dosent register!!'})
-
         //compare password
         const match = await bcrypt.compare(password, result.password);
-        if(!match) return res.json({msg:'un correct passwords'})
-
+        if(!match){
+            const err = new Error();
+            err.msg = 'incorrect password';
+            err.status = 403;
+            throw err;
+        }
         //create token for user
         const token= jwt.sign({_id:result._id,name:result.name },process.env.SECRET_KEY);
         res.cookie('token',token)
         res.json({msg:'login'})
     }
-    catch(e){
-        next(e);
+    catch(err){
+        next(err);
     }
 }
 
