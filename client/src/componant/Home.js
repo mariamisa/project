@@ -7,6 +7,7 @@ import './Home.css'
 function Home(){
     const [blogs,setBlogs]=useState([]);
     const [error,setError]=useState();
+    const [search,setSearch]=useState([]);
 
 
     useEffect(()=>{
@@ -19,6 +20,16 @@ function Home(){
         });
     },[])
 
+    const handelSearch=({target:{value}})=>{
+        if(value){
+        const s=blogs.filter(({title})=>title.includes(value.trim()))
+        setSearch(s)
+        console.log(s);
+        }else{
+            console.log();
+        }
+    }
+
     return(
         <div className="main-como-blog"> 
             <h2 style={{ margin: "30px" }}>
@@ -29,6 +40,7 @@ function Home(){
             className="search-blog"
             name="serach"
             placeholder="Enter Film blog"
+            onChange={handelSearch}
             />
             <div className="container-blog">
 
