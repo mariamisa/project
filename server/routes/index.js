@@ -8,14 +8,14 @@ const {
     addNewBlog,
     deleteAllBlogs,
     deleteAllUsers,
-    googleAuth
+    googleAuth,
     } =require('../controller');
 const {
     registerValidation,
     checkEmail,
     loginValidation,
-    addBlogValidation,
-    protected
+    protected,
+    validationBlog
     } =require('../middelware')
 
 //user routes
@@ -28,7 +28,7 @@ Router.post('/login/google', googleAuth);
 
 //blogs routes (protected add blog)
 Router.get('/blogs',getAllBlogs)
-Router.post('/blogs',protected,addBlogValidation,addNewBlog)
+Router.post('/blogs',protected,validationBlog,addNewBlog)
 Router.delete('/blogs',deleteAllBlogs)
 
 

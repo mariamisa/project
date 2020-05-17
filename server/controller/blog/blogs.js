@@ -20,11 +20,15 @@ const addNewBlog=async(req,res,next)=>{
     const authorName=name
     try{
         const newBlog=await Blog.create({title,img,description,author,authorName})
-        if(!newBlog) return res.json({msg:'error'})
+        if(!newBlog){
+            const err = new Error();
+            err.msg = 'faild to add blog';
+            throw err;
+        }
         res.json({data:`${newBlog} add succesfuly`})
     }
-    catch(e){
-        next(e);
+    catch(err){
+        next(err);
     }
 }
 
