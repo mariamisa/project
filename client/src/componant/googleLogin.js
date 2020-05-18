@@ -41,7 +41,7 @@ function GoogleAuth(){
                 onFailure={failureResponse}
                 cookiePolicy={'single_host_origin'}
             />
-            <div>{userId},{name},{email}</div>
+            {email}
         </div>
         
     )

@@ -7,7 +7,7 @@ const checkEmail=async(req,res,next)=>{
                 next()
             }
             else{
-                res.status(400).json({ msg:'email already exists!!' });
+                res.status(403).json({ msg:'email already exists!!' });
             }
 }
 

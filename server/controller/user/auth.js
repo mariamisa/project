@@ -23,7 +23,7 @@ const register= async (req,res,next)=>{
     });
 }
 
-const login= async(req,res)=>{
+const login= async(req,res,next)=>{
     //check user if register
     const {body:{email,password}}=req;
     try{
