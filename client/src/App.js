@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Register from './componant/Register'
 import Login from './componant/Login'
-
+import AddBlog from './componant/AddBlog'
 import Home from './componant/Home'
 
 import './App.css';
@@ -28,6 +28,9 @@ function App() {
               <li>
                 <Link to="/login">login</Link>
               </li>
+              <li>
+                <Link to="/addBlog">Add Blog</Link>
+              </li>
             </ul>
           </nav>
           <Switch>
@@ -39,6 +42,9 @@ function App() {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/addBlog">
+              <AddBlog />
             </Route>
           </Switch>
         </div>

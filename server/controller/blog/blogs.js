@@ -13,7 +13,6 @@ const getAllBlogs=async(req,res,next)=>{
     }
 }
 const addNewBlog=async(req,res,next)=>{
-    console.log(req.body);
     const {body:{title,description,img}}=req;
     const {_id,name}= jwt.decode(req.cookies.token,process.env.SECRET_KEY)
     const author=_id;
@@ -25,7 +24,7 @@ const addNewBlog=async(req,res,next)=>{
             err.msg = 'failed to add blog';
             throw err;
         }else{
-            res.status(200).json({data:`${newBlog._id} add successfully`})
+            res.status(200).json({msg:`blog with title:${newBlog.title} added successfully`})
         }
     }
     catch(err){
