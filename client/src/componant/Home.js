@@ -3,13 +3,13 @@ import axios from 'axios'
 import CardComp from './Card'
 import { BackTop } from 'antd';
 import './Home.css'
+import { date } from 'yup';
 
-// get all blogs to display on home page 
 function Home(){
     const [blogs,setBlogs]=useState([]);
     const [error,setError]=useState();
-    const [search,setSearch]=useState([]);
-
+    const [search,setSearch]=useState('');
+    const [searchData,setSearchData]=useState([]);
 
     useEffect(()=>{
         axios.get("/api/v1/blogs")
@@ -21,13 +21,24 @@ function Home(){
         });
     },[])
 
+    useEffect(()=>{
+            axios.get(`/api/v1/blogs/${search}`)
+            .then(({data:{data}}) =>{
+                if(date){
+                    setSearchData(data);
+                }else{
+                    setSearch('')
+                }
+            })
+            .catch((error) => {
+                setError(error)})
+    },[search])
+
     const handelSearch=({target:{value}})=>{
         if(value){
-        const s=blogs.filter(({title})=>title.includes(value.trim()))
-        setSearch(s)
-        console.log(s);
+        setSearch(value)
         }else{
-            console.log();
+        setSearchData([])
         }
     }
     const style = {
@@ -39,12 +50,12 @@ function Home(){
         color: '#fff',
         textAlign: 'center',
         fontSize: 14,
-      };
+    };
 
     return(
         <div className="main-como-blog"> 
             <h2 style={{ margin: "30px" }}>
-                The Place Where You Can Find All news of animes
+                The Place Where You Can Find All news of anime's
             </h2>
 
             <input
@@ -55,12 +66,11 @@ function Home(){
             />
             <div className="container-blog">
 
-                {error ? 
-                <div>error on get data</div>:
-                (
-                    blogs.map((blog) => <CardComp key={blog._id} item={blog} />)
-                )
+                {error ? (<div>error on get data</div>) : searchData.length ? 
+                (searchData.map((blog) => <CardComp key={blog._id} item={blog} />)):
+                (blogs.map((blog) => <CardComp key={blog._id} item={blog} />))
                 }
+
                 <div style={{ height: '50vh', padding: 8 }}>
                     <BackTop> <div style={style}>UP</div></BackTop></div>
                 </div>

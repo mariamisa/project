@@ -16,7 +16,7 @@ const CardComp = (props) => {
           <Meta title={description} />
           <Meta title={authorName} />
           <Meta title={moment(date).add(1, 'days').calendar()} />
-        </Card>,
+        </Card>
       </div>
 
   );
