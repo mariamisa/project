@@ -4,7 +4,7 @@ const validationBlog=(req,res,next)=>{
     const schema = object().shape({
         title: string().required(),
         img:string().required(),
-        description: string().min(8).required(),
+        description: string().required(),
     });
     schema.validate(req.body, { abortEarly: false })
         .then(() =>  next())
