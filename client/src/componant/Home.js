@@ -50,7 +50,7 @@ function Home(){
             <input
             className="search-blog"
             name="serach"
-            placeholder="Enter Film blog"
+            placeholder="Enter title blog"
             onChange={handelSearch}
             />
             <div className="container-blog">
