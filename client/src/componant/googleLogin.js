@@ -1,29 +1,16 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { GoogleLogin } from 'react-google-login';
+import { withRouter } from 'react-router-dom';    
+import {message} from 'antd'
 import axios from 'axios';
 
-function GoogleAuth(){
-
-    const [userId,setUserId]=useState();
-    const [name,setName]=useState();
-    const [email,setEmail]=useState();
-    const [addUser,setAddUser]=useState(false)
-
-    if(addUser){
-        axios.post('/api/v1/register',
-        {name,email:"mariiiippjl5kka@gmail.com",password:"11111",userId})
-        .then(console.log)
-        .catch(console.log)
-    }
-
+const GoogleAuth=withRouter((props)=>{
     const successResponse = (response) => {
-        const { tokenId } = response;
-        axios.post('/api/v1/login/google', { tokenId })
-        .then(({data:{email,name,sub}})=>{
-            setUserId(sub)
-            setEmail(email)
-            setName(name)
-            setAddUser(true)
+        const { tokenId,name } = response;
+        axios.post('/api/v1/login/google', { tokenId,name })
+        .then(({data:{email}})=>{
+            message.success(`login with ${email}`)
+            props.history.push('/')
         })
         .catch(console.log);
     };
@@ -41,10 +28,9 @@ function GoogleAuth(){
                 onFailure={failureResponse}
                 cookiePolicy={'single_host_origin'}
             />
-            <div>{userId},{name},{email}</div>
         </div>
         
     )
-}
+})
 
 export default GoogleAuth
