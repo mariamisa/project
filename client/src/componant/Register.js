@@ -3,9 +3,9 @@ import { Form, Input, Button,message,Alert } from 'antd';
 import { withRouter } from 'react-router-dom'    
 import GoogleAuth from './googleLogin'
 import Axios from 'axios';
+import './Register.css'
 
-
-const Register= withRouter((props)=> {
+const RegisterComp= withRouter((props)=> {
     const [error,seError]=useState();
 
     const layout = {
@@ -28,12 +28,14 @@ const Register= withRouter((props)=> {
     };
 
     return(
-        <div>
+        <div className="register-cont">
+            <h1>Register</h1>
             <Form
                 {...layout}
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
+                className="form-con"
             >
                 <Form.Item
                     label="Username"
@@ -67,17 +69,17 @@ const Register= withRouter((props)=> {
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" className="btn">
                     Submit
                     </Button>
+                    <GoogleAuth/>
                 </Form.Item>
                 {error && <Alert type="error" message={error} />}
             </Form>
-            <GoogleAuth/>
 
         </div>
     )
     
 })
 
-export default Register
+export default RegisterComp

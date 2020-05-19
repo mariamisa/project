@@ -1,7 +1,6 @@
 const { object, string } = require('yup');
 
 const validationBlog=(req,res,next)=>{
-    console.log(req.body);
     const schema = object().shape({
         title: string().required(),
         img:string().required(),

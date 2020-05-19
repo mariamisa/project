@@ -10,7 +10,7 @@ const CardComp = (props) => {
         <Card
         hoverable
         style={{ width: 240 }}
-        cover={<img alt="blog-img" src={`https://image.tmdb.org/t/p/w500/${img}`} />}>
+        cover={<img alt="blog-img" src={img} />}>
           <Meta title={title} />
           <Meta title={description} />
           <Meta title={authorName} />
