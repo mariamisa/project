@@ -17,7 +17,6 @@ const Blog= withRouter((props)=> {
     };
     
     const onFinish = values => {
-        console.log(values);
         Axios.post('/api/v1/blogs',values)
         .then(({data:{msg}})=>{
             message.success(msg);
