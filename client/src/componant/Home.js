@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
 import CardComp from './Card'
+import { BackTop } from 'antd';
 import './Home.css'
 
 // get all blogs to display on home page 
@@ -29,6 +30,16 @@ function Home(){
             console.log();
         }
     }
+    const style = {
+        height: 40,
+        width: 40,
+        lineHeight: '40px',
+        borderRadius: 4,
+        backgroundColor: '#1088e9',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 14,
+      };
 
     return(
         <div className="main-como-blog"> 
@@ -50,7 +61,9 @@ function Home(){
                     blogs.map((blog) => <CardComp key={blog._id} item={blog} />)
                 )
                 }
-            </div>
+                <div style={{ height: '50vh', padding: 8 }}>
+                    <BackTop> <div style={style}>UP</div></BackTop></div>
+                </div>
         </div>
     )
 }
