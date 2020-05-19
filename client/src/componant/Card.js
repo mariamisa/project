@@ -1,4 +1,5 @@
 import React from "react";
+import moment from 'moment'
 import { Card } from 'antd';
 import './Card.css'
 const { Meta } = Card;
@@ -14,7 +15,7 @@ const CardComp = (props) => {
           <Meta title={title} />
           <Meta title={description} />
           <Meta title={authorName} />
-          <Meta title={date} />
+          <Meta title={moment(date).add(1, 'days').calendar()} />
         </Card>,
       </div>
 

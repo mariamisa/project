@@ -1,11 +1,12 @@
 const axios=require('axios')
 const { OAuth2Client } = require('google-auth-library');
+const jwt=require('jsonwebtoken')
 
 const {env:{CLIENT_ID}}=process
 const client = new OAuth2Client(CLIENT_ID);
 
 const googleAuth=async (req, res) => {
-	const { tokenId } = req.body;
+	const { tokenId,name } = req.body;
 	const verify = async () => {
 		const ticket = await client.verifyIdToken({
 			idToken: tokenId,
@@ -14,8 +15,10 @@ const googleAuth=async (req, res) => {
 		const payload = ticket.getPayload();
 		const userid = payload['sub'];
 		//set cookies
+		const token= jwt.sign({_id:userid,name },process.env.SECRET_KEY);
+        res.cookie('token',token)
 	};
-	verify().catch(console.error);
+	verify().catch(res=>res.status(400).json('un-uth'));
 
 	// request user details:
 	const idInfo = await axios.get(
