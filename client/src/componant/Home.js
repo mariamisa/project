@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
-import Card from './Card'
+import CardComp from './Card'
 import './Home.css'
 
 // get all blogs to display on home page 
@@ -35,7 +35,7 @@ function Home(){
                 {error ? 
                 <div>error on get data</div>:
                 (
-                    blogs.map((blog) => <Card key={blog._id} item={blog} />)
+                    blogs.map((blog) => <CardComp key={blog._id} item={blog} />)
                 )
                 }
             </div>

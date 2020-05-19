@@ -1,22 +1,23 @@
 import React from "react";
+import { Card } from 'antd';
 import './Card.css'
+const { Meta } = Card;
 
-const Card = (props) => {
+const CardComp = (props) => {
   const {item:{title,img,description,date,authorName}}= props;
   return (
       <div className="card">
-        <img src={`${img}`} 
-              alt="blog-img"
-              className="blog-container__img"/>
-        <div className="container">
-              <h2 className="blog-container__title">{title}</h2>
-              <p className="blog-container__date">{description}</p>
-              <p className="blog-container__text">{authorName}</p>
-              <p className="blog-container__media">{date}</p>
-        </div>
+        <Card
+        hoverable
+        style={{ width: 240 }}
+        cover={<img alt="blog-img" src={`https://image.tmdb.org/t/p/w500/${img}`} />}>
+          <Meta title={title} />
+          <Meta title={description} />
+          <Meta title={authorName} />
+          <Meta title={date} />
+        </Card>,
       </div>
 
   );
 };
-
-export default Card;
+export default CardComp;

@@ -1,23 +1,31 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
+import React,{useState} from 'react';
+import { Form, Input, Button,message,Alert } from 'antd';
+import { withRouter } from 'react-router-dom'    
 import GoogleAuth from './googleLogin'
 import Axios from 'axios';
 
 
-const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-};
-const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-};
+const Register= withRouter((props)=> {
+    const [error,seError]=useState();
 
-const onFinish = values => {
-    console.log(values,111);
-    Axios.post('/api/v1/register',values).then(console.log).catch(res=>console.log(res))
-};
-
-function Register() {
+    const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+    };
+    const tailLayout = {
+        wrapperCol: { offset: 8, span: 16 },
+    };
+    
+    const onFinish = values => {
+        Axios.post('/api/v1/register',values)
+        .then(({data:{msg}})=>{
+            message.success(msg);
+            props.history.push('/')
+        })
+        .catch((res)=>{
+            seError('email exists or error on register process')
+        })
+    };
 
     return(
         <div>
@@ -63,12 +71,13 @@ function Register() {
                     Submit
                     </Button>
                 </Form.Item>
+                {error && <Alert type="error" message={error} />}
             </Form>
             <GoogleAuth/>
 
         </div>
     )
     
-}
+})
 
 export default Register

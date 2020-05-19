@@ -16,7 +16,7 @@ const register= async (req,res,next)=>{
                 userId,
                 city
             })
-            res.json({msg:`user for id ${data._id} created sucessfully`,data})
+            res.json({msg:`welcome ${data.name} ,created successfully`})
         }catch(e){
             next(e);
         }
