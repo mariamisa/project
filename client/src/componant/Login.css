@@ -1,0 +1,14 @@
+.login-cont{
+    color: rebeccapurple !important;
+    width: 80% !important;
+    margin: auto !important;
+}
+.form-con{
+    text-align: left;
+    margin: 0px auto !important;
+    padding: 0px;
+    width: 50%;
+}
+.btn{
+    margin-bottom: 10px !important;
+}

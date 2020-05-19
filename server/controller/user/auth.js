@@ -37,10 +37,11 @@ const login= async(req,res,next)=>{
             err.status = 403;
             throw err;
         }
+        const {_id,name}=result
         //create token for user
-        const token= jwt.sign({_id:result._id,name:result.name },process.env.SECRET_KEY);
+        const token= jwt.sign({_id,name},process.env.SECRET_KEY);
         res.cookie('token',token)
-        res.json({msg:'login'})
+        res.json({msg:`welcome,${name}`})
     }
     catch(err){
         next(err);
