@@ -29,7 +29,7 @@ const Blog= withRouter((props)=> {
 
     return(
         <div className="blog-cont">
-            <h1>Login</h1>
+            <h1>add new blog</h1>
             <Form
                 {...layout}
                 name="basic"

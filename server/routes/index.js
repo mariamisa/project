@@ -9,6 +9,7 @@ const {
     deleteAllBlogs,
     deleteAllUsers,
     googleAuth,
+    getBlogsByTitle
     } =require('../controller');
 const {
     registerValidation,
@@ -28,6 +29,7 @@ Router.post('/login/google', googleAuth);
 
 //blogs routes (protected add blog)
 Router.get('/blogs',getAllBlogs)
+Router.get('/blogs/:search',getBlogsByTitle)
 Router.post('/blogs',protected,validationBlog,addNewBlog)
 Router.delete('/blogs',deleteAllBlogs)
 
