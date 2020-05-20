@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
 import CardComp from './Card'
-import { BackTop,Spin,Alert } from 'antd';
+import { BackTop,Spin,Alert,Empty } from 'antd';
 import './Home.css'
 import { date } from 'yup';
 
@@ -68,15 +68,14 @@ function Home(){
             onChange={handelSearch}
             />
             <div className="container-blog">
-                {loaded && (<Spin tip="Loading...">
-                            <Alert
+                {loaded ? (<Spin tip="Loading..."> <Alert
                                 message="data loading"
                                 description="data loading ...."
-                                type="info" /></Spin>)}
-
-                {error ? (<div>error on get data</div>) : searchData.length ? 
+                                type="info" /></Spin>):
+                (error) ? (<div>error on get data</div>) : searchData.length ? 
                 (searchData.map((blog) => <CardComp key={blog._id} item={blog} />)):
-                (blogs.map((blog) => <CardComp key={blog._id} item={blog} />))
+                (!blogs.length)? (<Empty/>)
+                :(blogs.map((blog) => <CardComp key={blog._id} item={blog} />))
                 }
 
                 <div style={{ height: '50vh', padding:'8px' }}>
