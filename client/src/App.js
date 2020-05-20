@@ -17,8 +17,12 @@ function App() {
     <div className="App">
       <Router>
         <div>
-          <nav>
-            <ul>
+          <header className="header">
+            <nav className="nav-container">
+              <ul className="nav nav-item nav-left">
+                  <li>Anime Blog</li>
+              </ul>
+              <ul className="nav nav-container nav-right">
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -31,8 +35,9 @@ function App() {
               <li>
                 <Link to="/addBlog">Add Blog</Link>
               </li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+          </header>
           <Switch>
             <Route exact path="/">
               <Home />
