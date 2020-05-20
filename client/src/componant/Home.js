@@ -71,9 +71,9 @@ function Home(){
                 (blogs.map((blog) => <CardComp key={blog._id} item={blog} />))
                 }
 
-                <div style={{ height: '50vh', padding: 8 }}>
+                <div style={{ height: '50vh', padding:'8px' }}>
                     <BackTop> <div style={style}>UP</div></BackTop></div>
-                </div>
+            </div>
         </div>
     )
 }
