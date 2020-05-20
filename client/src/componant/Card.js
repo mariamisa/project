@@ -10,12 +10,15 @@ const CardComp = (props) => {
       <div className="card">
         <Card
         hoverable
-        style={{ width: 240 }}
+        style={{ width: 300 }}
         cover={<img alt="blog-img" src={img} />}>
-          <Meta title={title} />
-          <Meta title={description} />
-          <Meta title={authorName} />
-          <Meta title={moment(date).add(1, 'days').calendar()} />
+          <Meta title={'Title:'} description={title} />
+          <br/>
+          <Meta title={'Description:'} description={description} />
+          <br/>
+          <Meta title={'By:'} description={authorName} />
+          <br/>
+          <Meta title={'Posted:'} title={moment(date).add(1, 'days').calendar()} />
         </Card>
       </div>
 
