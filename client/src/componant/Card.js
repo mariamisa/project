@@ -9,16 +9,15 @@ const CardComp = (props) => {
   return (
       <div className="card">
         <Card
-        hoverable
         style={{ width: 300 }}
         cover={<img alt="blog-img" src={img} />}>
-          <Meta title={'Title:'} description={title} />
+          <Meta title='Title:' description={title} />
           <br/>
-          <Meta title={'Description:'} description={description} />
+          <Meta title='Description:' description={description} />
           <br/>
-          <Meta title={'By:'} description={authorName} />
+          <Meta title='By:' description={authorName} />
           <br/>
-          <Meta title={'Posted:'} title={moment(date).add(1, 'days').calendar()} />
+          <Meta title='Posted:' description={moment(date).add(1, 'days').calendar()} />
         </Card>
       </div>
 

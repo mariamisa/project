@@ -23,7 +23,6 @@ const Login= withRouter((props)=> {
             props.history.push('/')
         })
         .catch((res)=>{
-            console.log(res);
             seError('incorrect password  or email doesnt exist')
         })
     };

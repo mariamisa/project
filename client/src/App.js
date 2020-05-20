@@ -8,6 +8,7 @@ import {
 import Register from './componant/Register'
 import Login from './componant/Login'
 import AddBlog from './componant/AddBlog'
+import LogOut from './componant/Logout'
 import Home from './componant/Home'
 
 import './App.css';
@@ -35,6 +36,9 @@ function App() {
               <li>
                 <Link to="/addBlog">Add Blog</Link>
               </li>
+              <li>
+                <Link to="/logout">LogOut</Link>
+              </li>
               </ul>
             </nav>
           </header>
@@ -50,6 +54,9 @@ function App() {
             </Route>
             <Route exact path="/addBlog">
               <AddBlog />
+            </Route>
+            <Route exact path="/logout">
+              <LogOut />
             </Route>
           </Switch>
         </div>

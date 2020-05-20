@@ -15,8 +15,6 @@ const googleAuth=async (req, res) => {
 		const payload = ticket.getPayload();
 		const userid = payload['sub'];
 		//set cookies
-		const token= jwt.sign({_id:userid,name },process.env.SECRET_KEY);
-        res.cookie('token',token)
 	};
 	verify().catch(res=>res.status(400).json('un-uth'));
 
@@ -24,6 +22,8 @@ const googleAuth=async (req, res) => {
 	const idInfo = await axios.get(
 		`https://oauth2.googleapis.com/tokeninfo?id_token=${req.body.tokenId}`
 	);
+	const token= jwt.sign({_id:idInfo.data.kid,name:idInfo.data.name },process.env.SECRET_KEY);
+	res.cookie('token',token)
 	res.json(idInfo.data);
 }
 

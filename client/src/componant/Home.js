@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
 import CardComp from './Card'
-import { BackTop } from 'antd';
+import { BackTop,Spin,Alert } from 'antd';
 import './Home.css'
 import { date } from 'yup';
 
@@ -10,14 +10,17 @@ function Home(){
     const [error,setError]=useState();
     const [search,setSearch]=useState('');
     const [searchData,setSearchData]=useState([]);
+    const [loaded,setLoaded]=useState(true);
 
     useEffect(()=>{
         axios.get("/api/v1/blogs")
         .then(({data:{data}}) =>{
             setBlogs(data);
+            setLoaded(false)
         })
         .catch((error) => {
             setError(error);
+            setLoaded(false)
         });
     },[])
 
@@ -60,11 +63,16 @@ function Home(){
 
             <input
             className="search-blog"
-            name="serach"
+            name="search"
             placeholder="Enter title blog"
             onChange={handelSearch}
             />
             <div className="container-blog">
+                {loaded && (<Spin tip="Loading...">
+                            <Alert
+                                message="data loading"
+                                description="data loading ...."
+                                type="info" /></Spin>)}
 
                 {error ? (<div>error on get data</div>) : searchData.length ? 
                 (searchData.map((blog) => <CardComp key={blog._id} item={blog} />)):
